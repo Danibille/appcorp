@@ -1,8 +1,11 @@
 package model;
 
-public class Bibliotecario {
+import jakarta.persistence.ManyToOne;
+
+public class Bibliotecario extends Entidade{
     public int id;
     public String nome;
+    @ManyToOne
     private Usuario usuario;
 
     public Bibliotecario() {

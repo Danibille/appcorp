@@ -31,7 +31,7 @@ public class LivroServlet extends HttpServlet{
 
         LivroDao livroDao = new LivroDao();
         try {
-            livroDao.inserir(livro);
+            livroDao.salvar(livro);
         } catch (SQLException e) {
             e.getMessage();
         }
