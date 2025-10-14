@@ -1,25 +1,10 @@
 package model;
 
+import jakarta.persistence.*;
 
-public class Genero {
-  
-    public int id;
-    public String genero;
-    
-    public Genero() {
-    }
-
-    public Genero(String genero) {
-        this.setGenero(genero);;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+@Entity
+public class Genero extends Entidade{
+    private String genero;
 
     public String getGenero() {
         return genero;
