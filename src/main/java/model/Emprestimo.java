@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 @Entity
 public class Emprestimo extends Entidade{
     public Livro livro;
-    public String data_emprestimo;
-    public String data_devolução;
-    public double multa;
+    private String data_emprestimo;
+    private String data_devolução;
+    //private double multa;
     
     public String getData_emprestimo() {
         return data_emprestimo;

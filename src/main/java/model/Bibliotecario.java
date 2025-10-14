@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 public class Bibliotecario extends Entidade{
-
     private String nome;
     private Usuario usuario;
 
