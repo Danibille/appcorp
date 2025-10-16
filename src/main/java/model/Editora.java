@@ -8,9 +8,6 @@ public class Editora {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;
-
-    public Editora() {
-    }
     
     public Editora(String nome){
         this.setNome(nome);

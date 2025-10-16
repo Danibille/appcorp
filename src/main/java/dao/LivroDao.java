@@ -15,7 +15,7 @@ import model.Genero;
 import model.Livro;
 
 public class LivroDao {
-    /*private Connection con = null;
+    private Connection con = null;
     private String sql = null;
     private PreparedStatement stmt = null;
     private ResultSet rs = null;
@@ -112,6 +112,6 @@ public class LivroDao {
         this.stmt.close();
         this.con.close();
         return livroAlterado;
-    }*/
+    }
     
 }

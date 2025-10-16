@@ -1,7 +1,7 @@
 package model;
 
 
-public class Genero {
+public class Genero extends Entidade{
   
     public int id;
     public String genero;
