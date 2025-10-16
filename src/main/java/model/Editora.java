@@ -1,25 +1,14 @@
 package model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
-public class Editora {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class Editora extends Entidade{
     private String nome;
-    
-    public Editora(String nome){
-        this.setNome(nome);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id =id;
-    }
+    @OneToMany(mappedBy = "editora", targetEntity = Livro.class)
+    private List<Livro> livros;
     
     public String getNome() {
         return nome;

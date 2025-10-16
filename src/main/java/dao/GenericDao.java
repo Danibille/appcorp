@@ -6,7 +6,6 @@ import model.Entidade;
 import model.Usuario;
 import utils.HibernateUtil;
 import jakarta.persistence.*;
-import jakarta.persistence.EntityManager;
 
 public abstract class GenericDAO<T extends Entidade> {
     private final Class<T> clazz; // precisamos guardar a classe real

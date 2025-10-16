@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuarios")
 public class Usuario extends Entidade{
-
-    
     private String email;
     private String senha;
     private boolean ativo;

@@ -4,24 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 public class Livro extends Entidade{
-    public String titulo;
+    private String titulo;
     @ManyToOne
     @JoinColumn(name = "editora_id")
-    public Editora editora;
+    private Editora editora;
     @ManyToOne
     @JoinColumn(name = "genero_id")
-    public Genero genero;
-    public String autor;
-
-    public Livro() {
-    }
-
-    public Livro(String titulo, Editora editora, Genero genero, String autor) {
-        this.setTitulo(titulo);
-        this.editora = editora;
-        this.genero = genero;
-        this.setAutor(autor);
-    }
+    private Genero genero;
+    private String autor;
     
     public String getTitulo() {
         return titulo;
