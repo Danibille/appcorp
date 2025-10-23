@@ -1,4 +1,4 @@
-package controller.livro;
+package controller.genero;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,16 +9,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.LivroDao;
-import model.Livro;
+import model.Genero;
+import dao.GeneroDao;
 
-@WebServlet("/ListarLivro")
-public class ListarLivroServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+@WebServlet("/ListarGenero")
+public class ListarGeneroServlet {
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LivroDao LivroDao = new LivroDao();
-        List<Livro> livros = LivroDao.listarTodos();
-        request.setAttribute("livros", livros);
+        GeneroDao generoDao = new GeneroDao();
+        List<Genero> generos = generoDao.listarTodos();
+        request.setAttribute("generos", generos);
         RequestDispatcher rd = request.getRequestDispatcher("livro/listar-livro.jsp");
         rd.forward(request, response);
     }

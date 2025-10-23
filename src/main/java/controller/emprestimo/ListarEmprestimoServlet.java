@@ -1,4 +1,4 @@
-package controller.editora;
+package controller.emprestimo;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,17 +9,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.EditoraDao;
-import model.Editora;
+import dao.EmprestimoDao;
+import model.Emprestimo;
 
-@WebServlet("/ListarEditoras")
-public class ListarEditoraServlet {
+@WebServlet("/ListarEmprestimos")
+public class ListarEmprestimoServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EditoraDao editoraDao = new EditoraDao();
-        List<Editora> editoras = editoraDao.listarTodos();
-        request.setAttribute("editoras", editoras);
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-listar.jsp");
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        List<Emprestimo> emprestimos = emprestimoDao.listarTodos();
+        request.setAttribute("emprestimos", emprestimos);
+        RequestDispatcher rd = request.getRequestDispatcher("emprestimo/emprestimo-listar.jsp");
         rd.forward(request, response);
     }
 }

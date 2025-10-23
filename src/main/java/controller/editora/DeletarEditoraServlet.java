@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import dao.EditoraDao;
 import model.Editora;
 
-@WebServlet("/DeletarEditoraServlet")
+@WebServlet("/DeletarEditora")
 public class DeletarEditoraServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

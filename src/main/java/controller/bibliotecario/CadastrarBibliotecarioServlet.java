@@ -1,4 +1,4 @@
-package controller.editora;
+package controller.bibliotecario;
 
 import java.io.IOException;
 
@@ -9,34 +9,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.EditoraDao;
-import model.Editora;
+import dao.BibliotecarioDao;
+import model.Bibliotecario;
 
-@WebServlet("/CadastrarEditora")
-public class CadastrarEditoraServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet("/CadastrarBibliotecario")
+public class CadastrarBibliotecarioServlet extends HttpServlet {
+    private static final long serialVersionUID = 4L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         String nome = request.getParameter("nome");
 
-        Editora editora = new Editora();
-        editora.setNome(nome);
+        Bibliotecario bibliotecario = new Bibliotecario();
+        bibliotecario.setNome(nome);
 
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
-        EditoraDao editoraDao = new EditoraDao();
+        BibliotecarioDao bibliotecarioDao = new BibliotecarioDao();
         if (request.getParameter("id") != null && request.getParameter("acao").equals("editar")) {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            editora.setId(id);
-            editoraDao.atualizar(editora, null);
-            request.setAttribute("mensagem", "Editora atualizada com sucesso!"); // Mens
+            bibliotecario.setId(id);
+            bibliotecarioDao.atualizar(bibliotecario, null);
+            request.setAttribute("mensagem", "Bibliotecario atualizada com sucesso!"); // Mens
         } else {
-            editoraDao.salvar(editora, null);
-            request.setAttribute("mensagem", "Editora cadastrada com sucesso!");
+            bibliotecarioDao.salvar(bibliotecario, null);
+            request.setAttribute("mensagem", "Bibliotecario cadastrada com sucesso!");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-form.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("bibliotecario/bibliotecario-form.jsp");
 
         rd.forward(request, response);
 
@@ -46,11 +46,11 @@ public class CadastrarEditoraServlet extends HttpServlet {
             throws IOException, ServletException {
         if (request.getParameter("id") != null && request.getParameter("acao").equals("cadastrar")) {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            EditoraDao editoraDAO = new EditoraDao();
-            request.setAttribute("editora", editoraDAO.buscarPorId(id));
+            BibliotecarioDao bibliotecarioDao = new BibliotecarioDao();
+            request.setAttribute("bibliotecario", bibliotecarioDao.buscarPorId(id));
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-form.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("bibliotecario/bibliotecario-form.jsp");
         rd.forward(request, response);
     }
 }

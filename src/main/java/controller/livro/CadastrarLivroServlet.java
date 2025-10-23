@@ -17,7 +17,7 @@ import model.Editora;
 import model.Genero;
 import model.Livro;
 
-@WebServlet("/CadastrarLivroServlet")
+@WebServlet("/CadastrarLivro")
 public class CadastrarLivroServlet extends HttpServlet {
     private static final long serialVersionUID = 3L;
 
@@ -42,14 +42,13 @@ public class CadastrarLivroServlet extends HttpServlet {
         livro.setGenero(genero);
 
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
-        LivroDao dao = new LivroDao();
+        LivroDao livrodao = new LivroDao();
 
-        dao.salvar(livro, null);
+        livrodao.salvar(livro, null);
 
         RequestDispatcher rd = request.getRequestDispatcher("livro/cadastro-sucesso.jsp");
 
         rd.forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +57,6 @@ public class CadastrarLivroServlet extends HttpServlet {
             Integer id = Integer.parseInt(request.getParameter("id"));
             LivroDao livroDao = new LivroDao();
             request.setAttribute("livro", livroDao.buscarPorId(id));
-
         }
 
         EditoraDao editoraDao = new EditoraDao();

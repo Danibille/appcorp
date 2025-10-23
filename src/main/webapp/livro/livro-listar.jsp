@@ -37,10 +37,10 @@
             <td><%= livro.getGenero().getGenero %></td>
             <td><%= livro.getAutor() %></td>
             <td>
-                <a href="CadastrarLivroServlet?id=<%= livro.getId() %>">Editar</a>
+                <a href="CadastrarLivro?id=<%= livro.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="RemoverLivroServlet?id=<%= livro.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="DeletarLivro?id=<%= livro.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%

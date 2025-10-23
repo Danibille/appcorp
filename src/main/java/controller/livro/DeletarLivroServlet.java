@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import dao.LivroDao;
 import model.Livro;
 
-@WebServlet("/DeletarLivroServlet")
+@WebServlet("/DeletarLivro")
 public class DeletarLivroServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -3,7 +3,7 @@
 <%@ page import="model.Genero" %>
 <%@ page import="model.Livro" %>
 <%
-   Livro livro = (br.cefetrj.model.Livro) request.getAttribute("livro");
+    Livro livro = (model.Livro) request.getAttribute("livro");
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,7 +13,7 @@
     <title>Livro Cadastro</title>
 </head>
 <body>
-    <form action="CadastrarLivroServlet" method="post">
+    <form action="CadastrarLivro" method="post">
         <input type="hidden" name="id" value="<%= livro != null ? livro.getId() : '' %>">
         <input type="hidden" name="acao" value="<%= livro != null ? 'editar' : 'cadastrar' %>">
 

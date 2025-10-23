@@ -1,4 +1,4 @@
-package controller.editora;
+package controller.genero;
 
 import java.io.IOException;
 
@@ -9,34 +9,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.EditoraDao;
-import model.Editora;
+import model.Genero;
+import dao.GeneroDao;
 
-@WebServlet("/CadastrarEditora")
-public class CadastrarEditoraServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet("/CadastrarGenero")
+public class CadastrarGeneroServlet extends HttpServlet {
+    private static final long serialVersionUID = 2L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        String nome = request.getParameter("nome");
+        String nome = request.getParameter("genero");
 
-        Editora editora = new Editora();
-        editora.setNome(nome);
+        Genero genero = new Genero();
+        genero.setGenero(nome);
 
         // Aqui você pode adicionar o cliente a um banco de dados ou a uma lista
-        EditoraDao editoraDao = new EditoraDao();
+        GeneroDao generoDao = new GeneroDao();
         if (request.getParameter("id") != null && request.getParameter("acao").equals("editar")) {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            editora.setId(id);
-            editoraDao.atualizar(editora, null);
-            request.setAttribute("mensagem", "Editora atualizada com sucesso!"); // Mens
+            genero.setId(id);
+            generoDao.atualizar(genero, null);
+            request.setAttribute("mensagem", "Genero atualizada com sucesso!"); // Mens
         } else {
-            editoraDao.salvar(editora, null);
-            request.setAttribute("mensagem", "Editora cadastrada com sucesso!");
+            generoDao.salvar(genero, null);
+            request.setAttribute("mensagem", "Genero cadastrada com sucesso!");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-form.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("genero/genero-form.jsp");
 
         rd.forward(request, response);
 
@@ -46,11 +46,11 @@ public class CadastrarEditoraServlet extends HttpServlet {
             throws IOException, ServletException {
         if (request.getParameter("id") != null && request.getParameter("acao").equals("cadastrar")) {
             Integer id = Integer.parseInt(request.getParameter("id"));
-            EditoraDao editoraDAO = new EditoraDao();
-            request.setAttribute("editora", editoraDAO.buscarPorId(id));
+            GeneroDao generoDao = new GeneroDao();
+            request.setAttribute("genero", generoDao.buscarPorId(id));
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-form.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("genero/genero-form.jsp");
         rd.forward(request, response);
     }
 }

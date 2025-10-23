@@ -4,21 +4,29 @@ import jakarta.persistence.*;
 
 @Entity
 public class Emprestimo extends Entidade{
-    public Livro livro;
-    private String data_emprestimo;
-    private String data_devolução;
+    private Integer data_emprestimo;
+    private Integer data_devolução;
+    private Livro livro;
     //private double multa;
-    
-    public String getData_emprestimo() {
+
+    public Integer getData_emprestimo() {
         return data_emprestimo;
     }
 
-    public void setData_emprestimo(String data_emprestimo) {
+    public void setData_emprestimo(Integer data_emprestimo) {
         this.data_emprestimo = data_emprestimo;
     }
     
-    public String getData_devolução() {
+    public Integer getData_devolução() {
         return data_devolução;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
     //public double getMulta() {
