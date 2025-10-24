@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Entity
 public class Genero extends Entidade{
     private String genero;
-    @OneToMany(mappedBy = "editora", targetEntity = Livro.class)
+    @OneToMany(mappedBy = "genero", targetEntity = Livro.class)
     private List<Livro> livros;
 
     public String getGenero() {

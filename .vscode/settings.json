@@ -1,3 +1,21 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cSpell.words": [
+        "acao",
+        "arquivo",
+        "Cadastrar",
+        "Cadastro",
+        "deve",
+        "Editar",
+        "Editora",
+        "editoras",
+        "entidade",
+        "estar",
+        "Formulário",
+        "Genero",
+        "lista",
+        "Livro",
+        "livros",
+        "Título"
+    ]
 }

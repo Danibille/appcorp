@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Editora" %>
 <%
-    List<Editora> editoras = (List<Editora>) request.getAttribute("editoras");
+
+    List<Editora> editoras = (List<Editora>) request.getAttribute("lista");
 %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,7 @@
 </head>
 <body>
     <h2>Lista de Editoras</h2>
+    <a href="<%= request.getAttribute("urlSubmit") %>?acao=novo">Cadastrar Nova Editora</a>
     <table>
         <tr>
             <th>ID</th>
@@ -31,10 +33,10 @@
             <td><%= editora.getId() %></td>
             <td><%= editora.getNome() %></td>
             <td>
-                <a href="CadastrarEditoraServlet?id=<%= editora.getId() %>">Editar</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=buscar&id=<%= editora.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="RemoverEditoraServlet?id=<%= editora.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=deletar&id=<%= editora.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%
@@ -42,7 +44,7 @@
             } else {
         %>
         <tr>
-            <td colspan="3">Nenhuma editora encontrada.</td>
+            <td colspan="5">Nenhuma Editora encontrado.</td>
         </tr>
         <%
             }

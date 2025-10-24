@@ -1,12 +1,19 @@
 package controller;
 
-import dao.GenericDAO;
-import model.Entidade;
-import model.Usuario;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
+import dao.EditoraDao;
+import dao.GenericDAO;
+import dao.GeneroDao;
+import dao.LivroDao;
+import model.Editora;
+import model.Entidade;
+import model.Genero;
+import model.Livro;
+import model.Usuario;
 
 public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
 
@@ -36,6 +43,9 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
         if (acao == null)
             acao = "listar"; // comportamento padrão
         Usuario usuario = getUsuarioLogado(request);
+        String urlSubmit = request.getContextPath() + "/" + clazz.getSimpleName().toLowerCase();
+        request.setAttribute("urlSubmit", urlSubmit);
+
         if (usuario == null) {
             /**
              * Implementar redirecionamento para página de acesso negado. Faremos mais para
@@ -49,14 +59,14 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                 case "deletar":
                     int id = Integer.parseInt(request.getParameter("id"));
                     dao.deletar(id);
-                    response.sendRedirect(clazz.getSimpleName().toLowerCase() + "?acao=listar");
+                    response.sendRedirect(urlSubmit + "?acao=listar");
                     break;
 
                 case "listar":
                     List<T> lista = dao.listarTodos();
                     request.setAttribute("lista", lista);
                     try {
-                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "-lista.jsp")
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/listar.jsp")
                                 .forward(request, response);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -68,7 +78,29 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
                     T entidade = dao.buscarPorId(idBuscar);
                     request.setAttribute("entidade", entidade);
                     try {
-                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "form.jsp")
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/form.jsp")
+                                .forward(request, response);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "novo":
+                    try {
+                        // Se for o formulário de livro, carrega os editora e genero disponíveis e se for emprestimo, carrega os livros
+                        if (clazz.getSimpleName().equals("Livro")) {
+                            EditoraDao editoraDao = new EditoraDao();
+                            List<Editora> editoras = editoraDao.listarTodos();
+                            request.setAttribute("editoras", editoras);
+
+                            GeneroDao generoDao = new GeneroDao();
+                            List<Genero> generos = generoDao.listarTodos();
+                            request.setAttribute("generos", generos);
+                        } else if (clazz.getSimpleName().equals("Emprestimo")){
+                            LivroDao livroDao = new LivroDao();
+                            List<Livro> livros = livroDao.listarTodos();
+                            request.setAttribute("livros", livros);
+                        }
+                        request.getRequestDispatcher("/" + clazz.getSimpleName().toLowerCase() + "/form.jsp")
                                 .forward(request, response);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -86,19 +118,20 @@ public abstract class GenericServlet<T extends Entidade> extends HttpServlet {
             throws IOException {
         String acao = request.getParameter("acao");
         Usuario usuario = getUsuarioLogado(request);
-
+        String urlSubmit = request.getContextPath() + "/" + clazz.getSimpleName().toLowerCase();
+        request.setAttribute("urlSubmit", urlSubmit);
         try {
             switch (acao) {
-                case "salvar":
+                case "cadastrar":
                     T entidade = preencherEntidade(request);
                     dao.salvar(entidade, usuario);
                     break;
-                case "atualizar":
+                case "editar":
                     T entidadeAtualizada = preencherEntidade(request);
                     dao.atualizar(entidadeAtualizada, usuario);
                     break;
             }
-            response.sendRedirect(clazz.getSimpleName().toLowerCase() + "?acao=listar");
+            response.sendRedirect(urlSubmit + "?acao=listar");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("erro.jsp");

@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Livro" %>
 <%
-    List<Livro> livros = (List<Livro>) request.getAttribute("livros");
+    List<Livro> livros = (List<Livro>) request.getAttribute("lista");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <h2>Lista de Livros</h2>
+    <h2><% if (livro != null) { %>Editar Livro<% } else { %>Cadastrar Livro<% } %></h2>
     <table>
         <tr>
             <th>ID</th>
@@ -37,10 +37,10 @@
             <td><%= livro.getGenero().getGenero %></td>
             <td><%= livro.getAutor() %></td>
             <td>
-                <a href="CadastrarLivro?id=<%= livro.getId() %>">Editar</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=buscar&id=<%= livro.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="DeletarLivro?id=<%= livro.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=deletar&id=<%= livro.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%

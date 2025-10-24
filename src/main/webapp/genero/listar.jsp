@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Genero" %>
 <%
-    List<Editora> editoras = (List<Editora>) request.getAttribute("editoras");
+
+    List<Genero> generos = (List<Genero>) request.getAttribute("lista");
 %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,7 @@
 </head>
 <body>
     <h2>Lista de Generos</h2>
+    <a href="<%= request.getAttribute("urlSubmit") %>?acao=novo">Cadastrar Novo Genero</a>
     <table>
         <tr>
             <th>ID</th>
@@ -29,12 +31,12 @@
         %>
         <tr>
             <td><%= genero.getId() %></td>
-            <td><%= genero.getNome() %></td>
+            <td><%= genero.getGenero() %></td>
             <td>
-                <a href="CadastrasGenero?id=<%= genero.getId() %>">Editar</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=buscar&id=<%= genero.getId() %>">Editar</a>
             </td>
             <td>
-                <a href="DeletarGenero?id=<%= genero.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+                <a href="<%= request.getAttribute("urlSubmit") %>?acao=deletar&id=<%= genero.getId() %>" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
             </td>
         </tr>
         <%
@@ -42,7 +44,7 @@
             } else {
         %>
         <tr>
-            <td colspan="3">Nenhum genero encontrada.</td>
+            <td colspan="5">Nenhum Genero encontrado.</td>
         </tr>
         <%
             }
