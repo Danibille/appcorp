@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Genero" %>
 <%
-    List<Editora> editoras = (List<Editora>) request.getAttribute("editoras");
+    List<Genero> generos = (List<Genero>) request.getAttribute("generos");
 %>
 <!DOCTYPE html>
 <html>
