@@ -1,17 +1,26 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Editora" %>
+<%
+    Editora editora = (model.Editora) request.getAttribute("editora");
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editora Form</title>
+    <title>Cadastro Editora</title>
 </head>
 <body>
-    <form action="Editora" method="post">
-        <label for="nome">Nome:</label><br>
-        <input type="text" name="nome" id="nome"/><br>
-        <button type="submit" value="Enviar">Enviar</button>
-    </form>
+    <form action="CadastrarEditora" method="post">
+        <input type="hidden" name="id" value="<%= editora != null ? editora.getId() : '' %>">
+        <input type="hidden" name="acao" value="<%= editora != null ? 'editar' : 'cadastrar' %>">
+
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome" value="<%= editora != null ? editora.getNome() : '' %>" required><br>
+
+
+        <button type="submit"><%= editora != null ? 'Editar Editora' : 'Cadastrar Editora' %></button>
 
     <style>
         body{

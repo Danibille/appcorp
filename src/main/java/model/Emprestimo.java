@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Emprestimo extends Entidade{
     private Integer data_emprestimo;
-    private Integer data_devolução;
+    private Integer data_devolucao;
     private Livro livro;
     //private double multa;
 
@@ -17,8 +17,8 @@ public class Emprestimo extends Entidade{
         this.data_emprestimo = data_emprestimo;
     }
     
-    public Integer getData_devolução() {
-        return data_devolução;
+    public Integer getData_devolucao() {
+        return data_devolucao;
     }
 
     public Livro getLivro() {

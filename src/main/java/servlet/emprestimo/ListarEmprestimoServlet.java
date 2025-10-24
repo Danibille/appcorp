@@ -1,4 +1,4 @@
-package controller.livro;
+package servlet.emprestimo;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.LivroDao;
-import model.Livro;
+import dao.EmprestimoDao;
+import model.Emprestimo;
 
-@WebServlet("/DeletarLivro")
-public class DeletarLivroServlet {
+@WebServlet("/ListarEmprestimos")
+public class ListarEmprestimoServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LivroDao livroDao = new LivroDao();
-        Integer id = Integer.parseInt(request.getParameter("id"));
-        livroDao.deletar(id);
-        List<Livro> livros = livroDao.listarTodos();
-        request.setAttribute("livros", livros);
-        RequestDispatcher rd = request.getRequestDispatcher("livro/livro-listar.jsp");
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        List<Emprestimo> emprestimos = emprestimoDao.listarTodos();
+        request.setAttribute("emprestimos", emprestimos);
+        RequestDispatcher rd = request.getRequestDispatcher("emprestimo/emprestimo-listar.jsp");
         rd.forward(request, response);
     }
 }
-

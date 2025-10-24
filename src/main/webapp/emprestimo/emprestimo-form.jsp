@@ -1,17 +1,38 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Emprestimo" %>
+<%@ page import="model.Livro" %>
+<%
+    Emprestimo emprestimo = (model.Emprestimo) request.getAttribute("emprestimo");
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editora Form</title>
+    <title>Cadastro Emprestimo</title>
 </head>
 <body>
-    <form action="Emprestimo" method="post">
-        <label for="data_emprestimo">Data do emprestimo:</label><br>
-        <input type="text" name="data_emprestimo" id="data_emprestimo"/><br>
-        <button type="submit" value="Enviar">Enviar</button>
-    </form>
+    <form action="CadastrarEmprestimo" method="post">
+        <input type="hidden" name="id" value="<%= emprestimo != null ? emprestimo.getId() : '' %>">
+        <input type="hidden" name="acao" value="<%= emprestimo != null ? 'editar' : 'cadastrar' %>">
+
+        <label for="data_emprestimo">Data Emprestimo: </label>
+        <input type="text" id="data_emprestimo" name="data_emprestimo" value="<%= emprestimo != null ? emprestimo.getData_empretimo() : '' %>" required><br>
+
+        <label for="livro">Livro: </label>
+        <select id="livro" name="livroId" required>
+            <%
+                List<Livro> livros = (List<Livro>) request.getAttribute("livros");
+                for (Livro livro : livros) {
+            %>
+                <option value="<%= livro.getId() %>" <%= emprestimo != null && emprestimo.getLivro().getId().equals(livro.getId()) ? "selected" : "" %>><%= livro.getTitulo() %></option>
+            <%
+                }
+            %>
+        </select><br>
+
+        <button type="submit"><%= emprestimo != null ? 'Editar Emprestimo' : 'Cadastrar Emprestimo' %></button>
 
     <style>
         body{

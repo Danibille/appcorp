@@ -1,17 +1,26 @@
+<%@ page import="java.util.List" %>
+<%@ page import="model.Genero" %>
+<%
+    Genero genero = (model.Genero) request.getAttribute("genero");
+%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editora Form</title>
+    <title>Cadastro Genero</title>
 </head>
 <body>
-    <form action="Genero" method="post">
-        <label for="genero">Genero:</label><br>
-        <input type="text" name="genero" id="genero"/><br>
-        <button type="submit" value="Enviar">Enviar</button>
-    </form>
+    <form action="CadastrarGenero" method="post">
+        <input type="hidden" name="id" value="<%= genero != null ? genero.getId() : '' %>">
+        <input type="hidden" name="acao" value="<%= genero != null ? 'editar' : 'cadastrar' %>">
+
+        <label for="genero">Genero: </label>
+        <input type="text" id="genero" name="genero" value="<%= genero != null ? genero.getGenero() : '' %>" required><br>
+
+
+        <button type="submit"><%= genero != null ? 'Editar Genero' : 'Cadastrar Genero' %></button>
 
     <style>
         body{

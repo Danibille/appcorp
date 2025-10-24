@@ -34,7 +34,7 @@
             <td><%= livro.getId() %></td>
             <td><%= livro.getTitulo() %></td>
             <td><%= livro.getEditora().getNome() %></td>
-            <td><%= livro.getGenero().getGenero %></td>
+            <td><%= livro.getGenero().getGenero() %></td>
             <td><%= livro.getAutor() %></td>
             <td>
                 <a href="CadastrarLivro?id=<%= livro.getId() %>">Editar</a>
