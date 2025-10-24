@@ -13,7 +13,7 @@ import dao.LivroDao;
 import model.Livro;
 
 @WebServlet("/ListarLivro")
-public class ListarLivroServlet {
+public class ListarLivroServlet e{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LivroDao LivroDao = new LivroDao();
