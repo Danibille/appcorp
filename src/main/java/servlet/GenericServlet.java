@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import dao.GenericDAO;
 import model.Entidade;

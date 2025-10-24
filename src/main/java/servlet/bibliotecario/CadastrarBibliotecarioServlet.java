@@ -1,4 +1,4 @@
-package controller.bibliotecario;
+package servlet.bibliotecario;
 
 import java.io.IOException;
 

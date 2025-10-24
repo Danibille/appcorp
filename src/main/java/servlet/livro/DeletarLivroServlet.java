@@ -1,4 +1,4 @@
-package controller.editora;
+package servlet.livro;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dao.EditoraDao;
-import model.Editora;
+import dao.LivroDao;
+import model.Livro;
 
-@WebServlet("/DeletarEditora")
-public class DeletarEditoraServlet {
+@WebServlet("/DeletarLivro")
+public class DeletarLivroServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EditoraDao editoraDao = new EditoraDao();
+        LivroDao livroDao = new LivroDao();
         Integer id = Integer.parseInt(request.getParameter("id"));
-        Editora editora = editoraDao.buscarPorId(id);
-        editoraDao.deletar(editora.getId());
-        List<Editora> editoras = editoraDao.listarTodos();
-        request.setAttribute("editoras", editoras);
-        RequestDispatcher rd = request.getRequestDispatcher("editora/editora-listar.jsp");
+        livroDao.deletar(id);
+        List<Livro> livros = livroDao.listarTodos();
+        request.setAttribute("livros", livros);
+        RequestDispatcher rd = request.getRequestDispatcher("livro/livro-listar.jsp");
         rd.forward(request, response);
     }
 }
+

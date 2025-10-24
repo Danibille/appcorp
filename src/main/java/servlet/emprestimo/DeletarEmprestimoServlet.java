@@ -1,4 +1,4 @@
-package controller.emprestimo;
+package servlet.emprestimo;
 
 import java.io.IOException;
 import java.util.List;
