@@ -1,14 +1,16 @@
 package to.output;
 
+import model.Bibliotecario;
+
 public class BibliotecarioTOoutput {
     private Integer id;
     private String nome;
     private String email;
 
-    public BibliotecarioTOoutput(Integer id, String nome, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
+    public BibliotecarioTOoutput(Bibliotecario bibliotecario) {
+        this.id = bibliotecario.getId();
+        this.nome = bibliotecario.getNome();
+        this.email = bibliotecario.getEmail();
     }
 
     public Integer getId() {

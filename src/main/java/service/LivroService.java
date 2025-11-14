@@ -19,8 +19,8 @@ public class LivroService {
         return repository.save(entity);
     }
 
-    public void update(Livro entity) {
-        repository.save(entity);
+    public Livro update(Livro entity) {
+        return repository.save(entity);
     }
 
     public void delete(Integer id) {
