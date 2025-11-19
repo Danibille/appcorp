@@ -3,7 +3,7 @@
 <%@ page import="model.Genero" %>
 <%@ page import="model.Livro" %>
 <%
-    Livro livro = (model.Livro) request.getAttribute("livro");
+    Livro livro = (Livro) request.getAttribute("entidade");
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,44 +13,54 @@
     <title>Livro Cadastro</title>
 </head>
 <body>
-    <form action="CadastrarLivro" method="post">
+    <h2><% if (livro != null) { %>Editar Livro<% } else { %>Cadastrar Livro<% } %></h2>
+    <form action="<%= request.getAttribute("urlSubmit") %>" method="post">
         <input type="hidden" name="id" value="<%= livro != null ? livro.getId() : '' %>">
         <input type="hidden" name="acao" value="<%= livro != null ? 'editar' : 'cadastrar' %>">
 
-        <label for="titulo">Título: </label>
-        <input type="text" id="titulo" name="titulo" value="<%= livro != null ? livro.getTitulo() : '' %>" required><br>
+        <label for="titulo">Titulo:</label>
+        <input type="text" id="titulo" name="titulo" value="<%= livro != null ? livro.getTitulo() : "" %>" required><br><br>
 
-        <label for="editora">Editora: </label>
-        <select id="editora" name="editoraId" required>
-            <%
+        <label for="editora">Editora:</label>
+        <select name="editoraID" id="editora" multiple size="5" required>
+            <% 
                 List<Editora> editoras = (List<Editora>) request.getAttribute("editoras");
-                for (Editora editora : editoras) {
+                if (editoras != null) {
+                    for (Editora editora : editoras) {
             %>
-                <option value="<%= editora.getId() %>" <%= livro != null && livro.getEditora().getId().equals(editora.getId()) ? "selected" : "" %>><%= editora.getNome() %></option>
+                        <option value="<%= editora.getId() %>">
+                            <%= editora.getNome() %>
+                        </option>
             <%
+                    }
                 }
             %>
-        </select><br>
+        </select>
+
 
         <label for="genero">Genero: </label>
-        <select id="genero" name="generoId" required>
+        <select name="generoId" id="genero" multiple size="5" required>
             <%
                 List<Genero> generos = (List<Genero>) request.getAttribute("generos");
+                if (generos != null){
                 for (Genero genero : generos) {
             %>
-                <option value="<%= genero.getId() %>" <%= livro != null && livro.getGenero().getId().equals(genero.getId()) ? "selected" : "" %>><%= genero.getGenero() %></option>
+                <option value="<%= genero.getId() %>">
+                    <%= genero.getGenero() %>
+                </option>
             <%
+                    }
                 }
             %>
         </select><br>
 
         <label for="autor">Autor: </label>
-        <input type="text" id="autores" name="autores" value="<%= livro != null ? livro.getAutores() : '' %>" required><br>
+        <input type="text" id="autores" name="autores" value="<%= livro != null ? livro.getAutores() : "" %>" required><br><br>
 
         <button type="submit"><%= livro != null ? 'Editar Livro' : 'Cadastrar Livro' %></button>
 
 
-         <style>
+        <style>
         body{
             background-color: purple;
             text-align: center;
@@ -78,4 +88,3 @@
 
 </body>
 </html>
-   

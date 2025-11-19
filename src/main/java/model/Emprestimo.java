@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 public class Emprestimo extends Entidade{
     private Integer data_emprestimo;
     private Integer data_devolução;
+    @ManyToOne
+    @JoinColumn(name = "livro_id")
     private Livro livro;
     //private double multa;
 

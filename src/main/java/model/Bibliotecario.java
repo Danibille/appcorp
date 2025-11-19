@@ -3,9 +3,8 @@ package model;
 import jakarta.persistence.*;
 
 @Entity
-public class Bibliotecario extends Entidade{
+public class Bibliotecario extends Usuario{
     private String nome;
-    private Usuario usuario;
 
     public String getNome() {
         return nome;
@@ -13,9 +12,5 @@ public class Bibliotecario extends Entidade{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-     
-    public Usuario getUsuario() {
-        return usuario;
     }
 }
